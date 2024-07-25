@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Role</th>
+                <th>Content</th>
+                <th>Session ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>
