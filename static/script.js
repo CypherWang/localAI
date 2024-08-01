@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('user-input').addEventListener('keydown', handleInputKeydown);
     document.getElementById('new-session-button').addEventListener('click', createSession);
     document.getElementById('session-list').addEventListener('click', handleSessionClick);
+    document.getElementById('insert-weather-button').addEventListener('click', insertWeatherTag);
 
     loadSessions();
 });
@@ -63,28 +64,40 @@ function appendMessage(message, role, avatar) {
 
     const messageElement = document.createElement('div');
     messageElement.className = 'message';
-    messageElement.textContent = message;
 
-    if (role !== 'error') {
-        const avatarElement = document.createElement('img');
-        avatarElement.className = 'avatar';
-        avatarElement.src = avatar;
-        avatarElement.alt = role;
+    // 将 [WEATHER:xxx] 标记转换为斜体文本
+    message = message.replace(/\[WEATHER:(.*?)\]/g, '<em>天气查询：$1</em>');
+    messageElement.innerHTML = message;
 
-        if (role === 'user') {
-            messageContainer.appendChild(messageElement);
-            messageContainer.appendChild(avatarElement);
-        } else {
-            messageContainer.appendChild(avatarElement);
-            messageContainer.appendChild(messageElement);
-        }
+    const avatarElement = document.createElement('img');
+    avatarElement.className = 'avatar';
+    avatarElement.src = avatar;
+
+    if (role === 'user') {
+        messageContainer.appendChild(messageElement);
+        messageContainer.appendChild(avatarElement);
     } else {
+        messageContainer.appendChild(avatarElement);
         messageContainer.appendChild(messageElement);
     }
 
-    const chat = document.getElementById('chat');
-    chat.appendChild(messageContainer);
-    chat.scrollTop = chat.scrollHeight;
+    document.getElementById('chat').appendChild(messageContainer);
+    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+}
+
+// 添加一个新的辅助函数来插入天气查询标记
+function insertWeatherTag() {
+    const userInput = document.getElementById('user-input');
+    const locationId = prompt("请输入城市的 LocationID（例如：北京为101010100）：");
+    if (locationId) {
+        const weatherTag = `[WEATHER:${locationId}]`;
+        const cursorPos = userInput.selectionStart;
+        const textBefore = userInput.value.substring(0, cursorPos);
+        const textAfter = userInput.value.substring(cursorPos);
+        userInput.value = textBefore + weatherTag + textAfter;
+        userInput.focus();
+        userInput.selectionStart = userInput.selectionEnd = cursorPos + weatherTag.length;
+    }
 }
 
 async function loadSessions() {
