@@ -113,10 +113,26 @@ body {
 #user-input {
     flex-grow: 1;
     padding: 10px;
-    border: 1px solid #bdc3c7;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
-    resize: vertical;
+    margin-right: 10px;
+}
+
+#insert-weather-button, #send-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#insert-weather-button {
+    margin-right: 10px;
+}
+
+#insert-weather-button:hover, #send-button:hover {
+    background-color: #2980b9;
 }
 
 #send-button {
