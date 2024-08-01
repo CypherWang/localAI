@@ -11,7 +11,7 @@ app = Flask(__name__)
 DATABASE = 'database.db'
 
 # 添加天气API密钥（请在部署时替换为实际密钥）
-WEATHER_API_KEY = '57296597bde24e9f963f60a484405f42'
+WEATHER_API_KEY = 'API密钥'
 
 def get_db():
     if 'db' not in g:
