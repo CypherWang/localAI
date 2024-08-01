@@ -10,16 +10,19 @@
     <div id="main-container">
         <div id="sidebar">
             <h2>Sessions</h2>
+            <button id="new-session-button">New Session</button>
             <ul id="session-list"></ul>
         </div>
         <div id="chat-container">
+            <h2 id="session-title">Select a session</h2>
             <div id="chat"></div>
             <div id="input-container">
-                <input type="text" id="user-input" placeholder="Type your message...">
+                <textarea id="user-input" placeholder="Type your message..."></textarea>
                 <button id="send-button">Send</button>
             </div>
         </div>
     </div>
+    <div id="pagination" style="text-align: center; margin: 20px;"></div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
