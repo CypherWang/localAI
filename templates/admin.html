@@ -4,22 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Admin Panel</h1>
-    <table id="data-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Role</th>
-                <th>Content</th>
-                <th>Session ID</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+    <div class="admin-container">
+        <h1>Admin Panel</h1>
+        <div class="table-container">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Role</th>
+                        <th>Content</th>
+                        <th>Session ID</th>
+                        <th>Session Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div id="pagination" class="pagination"></div>
+    </div>
+    <script src="/static/admin.js"></script>
 </body>
 </html>
